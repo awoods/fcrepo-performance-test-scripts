@@ -41,9 +41,9 @@ while [  $N -lt $MAX  ]; do
 done
 
 echo retrieving $COL without members
-time -p curl -H "Accept: application/n-triples" $COL > 10k-members.nt
-grep -c memberOf 10k-members.nt
+time curl -H "Accept: application/n-triples" $COL > n-members.nt
+grep -c memberOf n-members.nt
 
 echo "retrieving $COL with members (inbound links)"
-time -p curl -H "Accept: application/n-triples" -H "Prefer: return=representation; include=\"http://fedora.info/definitions/v4/repository#InboundReferences\"" $COL > 10k-members.nt
-grep -c memberOf 10k-members.nt
+time curl -H "Accept: application/n-triples" -H "Prefer: return=representation; include=\"http://fedora.info/definitions/v4/repository#InboundReferences\"" $COL > n-members.nt
+grep -c memberOf n-members.nt

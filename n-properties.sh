@@ -22,5 +22,5 @@ while [ $N -lt $MAX ]; do
 done
 
 echo retrieving object
-time curl -H "Accept: application/n-triples" $OBJ > 10k-props.nt
-grep -c title 10k-props.nt
+time curl -H "Accept: application/n-triples" $OBJ > n-props.nt
+grep -c title n-props.nt

@@ -41,5 +41,5 @@ while [ $N -lt $MAX ]; do
 done
 
 echo retrieving $COL
-time -p curl -H "Accept: application/n-triples" $COL > 10k-members.nt
-grep -c hasMember 10k-members.nt
+time curl -H "Accept: application/n-triples" $COL > n-members.nt
+grep -c hasMember n-members.nt

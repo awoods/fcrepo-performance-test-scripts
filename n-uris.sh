@@ -22,5 +22,5 @@ while [ $N -lt $MAX ]; do
 done
 
 echo retrieving $COL
-time -p curl -H "Accept: application/n-triples" $COL > 10k-uris.nt
-grep -c relation 10k-uris.nt
+time curl -H "Accept: application/n-triples" $COL > n-uris.nt
+grep -c relation n-uris.nt
