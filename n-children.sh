@@ -12,9 +12,9 @@ N=0
 MAX=$1
 while [ $N -lt $MAX ]; do
 
-curl -X PUT -H "Content-Type: text/turtle" -d "
+curl -X POST -H "Content-Type: text/turtle" -d "
   @prefix ldp: <http://www.w3.org/ns/ldp#> .
-  <> a ldp:Container ." $BASE/$N  > /dev/null
+  <> a ldp:Container ." $BASE/  > /dev/null
 
   N=$(( $N + 1 ))
 
