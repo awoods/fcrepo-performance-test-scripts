@@ -20,7 +20,9 @@ while [ $N -lt $MAX ]; do
   newBinary=${BINARY_FILE}_${N}.dat
   cp $BINARY_FILE $newBinary
   echo $N >> $newBinary
-  curl -i -X POST --data-binary "@$newBinary" $BASE
+  MD5=`md5sum $newBinary | cut -f 1 -d ' '`
+  echo MD5 of $newBinary is $MD5
+  curl -i -X POST --data-binary "@$newBinary" -H"digest: md5=$MD5" $BASE
   rm $newBinary
 
   N=$(( $N + 1 ))
@@ -38,6 +40,5 @@ MINS=$(($DIFF / 60))
 SECS=$(($DIFF % 60))
 HOURS=$(($DIFF / 3600))
 DAYS=$(($DIFF / 86400))
-echo \n
-echo "Test: Upload $MAX unique $FILE_SIZE KB  binary files"
+echo "Test: Upload $MAX unique $FILE_SIZE_IN_KB KB  binary files"
 printf "\rTotal Elapsed Time: %3d Days, %02d:%02d:%02d" $DAYS $HOURS $MINS $SECS
