@@ -23,6 +23,8 @@ curl -X POST -H "Content-Type: text/turtle" -d "
   fi
 done
 
+echo retrieving $BASE to warm cache
+time curl -H "Accept: application/n-triples" $BASE 
 echo retrieving $BASE
 time curl -H "Accept: application/n-triples" $BASE > n-children.nt
 grep -c hasMember n-children.nt

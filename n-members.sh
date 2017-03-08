@@ -40,6 +40,8 @@ while [ $N -lt $MAX ]; do
   fi
 done
 
-echo retrieving $COL
+echo retrieving $COL once to warm cache
+time curl -H "Accept: application/n-triples" $COL 
+echo retrieving $COL (should be cached) 
 time curl -H "Accept: application/n-triples" $COL > n-members.nt
 grep -c hasMember n-members.nt
