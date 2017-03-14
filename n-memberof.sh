@@ -45,7 +45,7 @@ time curl -H "Accept: application/n-triples" $COL > n-members.nt
 grep -c memberOf n-members.nt
 
 echo "retrieving $COL with members (inbound links) once to warm cache"
-time curl -H "Accept: application/n-triples" -H "Prefer: return=representation; include=\"http://fedora.info/definitions/v4/repository#InboundReferences\"" $COL 
+time curl -H "Accept: application/n-triples" -H "Prefer: return=representation; include=\"http://fedora.info/definitions/v4/repository#InboundReferences\"" $COL | wc -l 
 echo "retrieving $COL with members (inbound links) from cache"
 time curl -H "Accept: application/n-triples" -H "Prefer: return=representation; include=\"http://fedora.info/definitions/v4/repository#InboundReferences\"" $COL > n-members.nt
 grep -c memberOf n-members.nt
