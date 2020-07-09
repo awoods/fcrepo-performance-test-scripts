@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$1" == "" ]; then
+    echo "There must be a exactly 1 argument!"
+    echo "- number objects"
+    exit 1;
+fi
+
 BASE=http://localhost:8080/rest/$RANDOM
 OBJ=$BASE/propsCollection
 
@@ -22,5 +28,6 @@ while [ $N -lt $MAX ]; do
 done
 
 echo retrieving object
-time curl -H "Accept: application/n-triples" $OBJ > n-props.nt
-grep -c title n-props.nt
+time curl -s -H "Accept: application/n-triples" $OBJ > n-props.nt
+PROPS=`grep -c title n-props.nt`
+echo "Number of properties on resource: $PROPS"
