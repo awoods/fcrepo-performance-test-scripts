@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ "$#" -ne 2 ]; then
+    echo "There must be exactly 2 arguments!"
+    echo " - number objects"
+    echo " - binary size in bytes"
+    exit 1;
+fi
+
 BASE=http://localhost:8080/rest/$RANDOM
 
 # create a collection
