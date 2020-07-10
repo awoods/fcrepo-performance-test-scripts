@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$1" == "" ]; then
+    echo "There must be a exactly 1 argument!"
+    echo "- number objects"
+    exit 1;
+fi
+
 BASE=http://localhost:8080/rest/$RANDOM
 COL=$BASE/uriCollection
 
@@ -22,5 +28,6 @@ while [ $N -lt $MAX ]; do
 done
 
 echo retrieving $COL
-time curl -H "Accept: application/n-triples" $COL > n-uris.nt
-grep -c relation n-uris.nt
+time curl -s -H "Accept: application/n-triples" $COL > n-uris.nt
+URIS=`grep -c relation n-uris.nt`
+echo "Number of URI references from resource: $URIS"
