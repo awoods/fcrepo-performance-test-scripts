@@ -3,7 +3,7 @@
 if [ "$#" -ne 2 ]; then
     echo "There must be exactly 2 arguments!"
     echo " - number objects"
-    echo " - binary size in bytes"
+    echo " - binary size in kilobytes"
     exit 1;
 fi
 
